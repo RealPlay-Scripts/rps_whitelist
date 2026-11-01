@@ -11,21 +11,25 @@ Config = {}
 
 -- ──────────────────────────────────────────────
 -- Your whitelist website base URL (no trailing slash)
--- Example: "https://yoursite.com"
+-- Set as server convars in server.cfg, never commit real values here:
+--   set rps_whitelist_api_url "https://yoursite.example"
+--   set rps_whitelist_api_key "your-api-key"   (read scope)
 -- ──────────────────────────────────────────────
-Config.ApiBaseUrl = "https://web.goldenshoresrp.com"
+Config.ApiBaseUrl = GetConvar('rps_whitelist_api_url', 'https://yoursite.example')
 
 -- ──────────────────────────────────────────────
 -- Your API key (X-API-Key header)
 -- Generate this from your site's admin panel
 -- ──────────────────────────────────────────────
-Config.ApiKey = " cfrp_emW2mNHUrUlltBQTkSdaHAyINQye0eoVfpM7fTARPft_hCLa07OSYTp2LLng7iuV"
+Config.ApiKey = GetConvar('rps_whitelist_api_key', '')
 
 -- ──────────────────────────────────────────────
--- The URL you want to send unlinked players to
--- This should be your Discord OAuth signup page
+-- The URL you want to send unlinked players to.
+-- Point this at your site's registration/Discord-connect page — once
+-- Discord OAuth is configured there, swap to a full OAuth deep-link if
+-- you prefer sending players straight into the consent screen.
 -- ──────────────────────────────────────────────
-Config.SignupUrl = "https://discord.com/oauth2/authorize?client_id=1492205889300598938&redirect_uri=https%3A%2F%2Fweb.goldenshoresrp.com%2Fauth%2Fdiscord%2Fcallback&response_type=code&scope=identify+email+guilds.join&state=yqUZ4caGiggyNJFyQTyCmA&prompt=consent"
+Config.SignupUrl = GetConvar('rps_whitelist_signup_url', 'https://yoursite.example/auth/register')
 
 -- ──────────────────────────────────────────────
 -- Kick message shown to players who aren't linked
@@ -48,4 +52,4 @@ Config.Bypass = {}
 -- Print debug info to the server console?
 -- Disable in production.
 -- ──────────────────────────────────────────────
-Config.Debug = true
+Config.Debug = false
